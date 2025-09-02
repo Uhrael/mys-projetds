@@ -197,6 +197,25 @@
             margin-bottom: 30px;
         }
 
+        .edit-playlist-btn {
+            background: linear-gradient(45deg, #00b894, #00cec9);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 20px auto;
+            display: block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .edit-playlist-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+        }
+
         .music-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -212,6 +231,7 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
             border: 2px solid rgba(255, 255, 255, 0.3);
+            position: relative;
         }
 
         .music-card:hover {
@@ -246,7 +266,7 @@
             border-radius: 25px;
             font-size: 1rem;
             cursor: pointer;
-            margin: 10px;
+            margin: 10px 5px;
             transition: all 0.3s ease;
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
@@ -254,6 +274,48 @@
         .play-button:hover {
             transform: translateY(-3px);
             box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+        }
+
+        .edit-button {
+            background: linear-gradient(45deg, #e17055, #fdcb6e);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin: 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+
+        .edit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .edit-form {
+            display: none;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .edit-form input, .edit-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        .edit-form input:focus, .edit-form textarea:focus {
+            border-color: #ff6b9d;
+            outline: none;
         }
 
         .message-section {
@@ -413,47 +475,79 @@
                 As músicas que marcaram nossa história e que me fazem lembrar de você
             </p>
             
-            <div class="music-grid">
-                <div class="music-card">
-                    <h3>🎶 "Perfect" - Ed Sheeran</h3>
-                    <p>Artista: Ed Sheeran</p>
-                    <button class="play-button" onclick="playMusic('perfect')">▶️ Tocar Música</button>
-                    <p class="music-reason">"Porque você é perfeita para mim em todos os sentidos"</p>
+        <section class="music-section">
+            <h2 class="music-title">Nossa Playlist do Amor 🎵</h2>
+            <p style="text-align: center; color: #5d1a2b; font-size: 1.1rem; margin-bottom: 20px;">
+                As músicas que marcaram nossa história e que me fazem lembrar de você
+            </p>
+            
+            <button class="edit-playlist-btn" onclick="toggleEditMode()">
+                ✏️ Personalizar Playlist
+            </button>
+            
+            <div class="music-grid" id="musicGrid">
+                <div class="music-card" id="song1">
+                    <h3 id="title1">🎶 "Perfect" - Ed Sheeran</h3>
+                    <p id="artist1">Artista: Ed Sheeran</p>
+                    <button class="play-button" onclick="playMusic('song1')">▶️ Tocar Música</button>
+                    <button class="edit-button" onclick="editSong(1)">✏️ Editar</button>
+                    <p class="music-reason" id="reason1">"Porque você é perfeita para mim em todos os sentidos"</p>
+                    
+                    <div class="edit-form" id="editForm1">
+                        <input type="text" id="editTitle1" placeholder="Título da música">
+                        <input type="text" id="editArtist1" placeholder="Nome do artista">
+                        <textarea id="editReason1" placeholder="Por que essa música é especial?" rows="2"></textarea>
+                        <button class="play-button" onclick="saveSong(1)">💾 Salvar</button>
+                        <button class="edit-button" onclick="cancelEdit(1)">❌ Cancelar</button>
+                    </div>
                 </div>
                 
-                <div class="music-card">
-                    <h3>🎶 "All of Me" - John Legend</h3>
-                    <p>Artista: John Legend</p>
-                    <button class="play-button" onclick="playMusic('allofme')">▶️ Tocar Música</button>
-                    <p class="music-reason">"Eu te amo com todas as suas imperfeições perfeitas"</p>
+                <div class="music-card" id="song2">
+                    <h3 id="title2">🎶 "All of Me" - John Legend</h3>
+                    <p id="artist2">Artista: John Legend</p>
+                    <button class="play-button" onclick="playMusic('song2')">▶️ Tocar Música</button>
+                    <button class="edit-button" onclick="editSong(2)">✏️ Editar</button>
+                    <p class="music-reason" id="reason2">"Eu te amo com todas as suas imperfeições perfeitas"</p>
+                    
+                    <div class="edit-form" id="editForm2">
+                        <input type="text" id="editTitle2" placeholder="Título da música">
+                        <input type="text" id="editArtist2" placeholder="Nome do artista">
+                        <textarea id="editReason2" placeholder="Por que essa música é especial?" rows="2"></textarea>
+                        <button class="play-button" onclick="saveSong(2)">💾 Salvar</button>
+                        <button class="edit-button" onclick="cancelEdit(2)">❌ Cancelar</button>
+                    </div>
                 </div>
                 
-                <div class="music-card">
-                    <h3>🎶 "Thinking Out Loud" - Ed Sheeran</h3>
-                    <p>Artista: Ed Sheeran</p>
-                    <button class="play-button" onclick="playMusic('thinking')">▶️ Tocar Música</button>
-                    <p class="music-reason">"Nossa música do primeiro beijo"</p>
+                <div class="music-card" id="song3">
+                    <h3 id="title3">🎶 "Thinking Out Loud" - Ed Sheeran</h3>
+                    <p id="artist3">Artista: Ed Sheeran</p>
+                    <button class="play-button" onclick="playMusic('song3')">▶️ Tocar Música</button>
+                    <button class="edit-button" onclick="editSong(3)">✏️ Editar</button>
+                    <p class="music-reason" id="reason3">"Nossa música do primeiro beijo"</p>
+                    
+                    <div class="edit-form" id="editForm3">
+                        <input type="text" id="editTitle3" placeholder="Título da música">
+                        <input type="text" id="editArtist3" placeholder="Nome do artista">
+                        <textarea id="editReason3" placeholder="Por que essa música é especial?" rows="2"></textarea>
+                        <button class="play-button" onclick="saveSong(3)">💾 Salvar</button>
+                        <button class="edit-button" onclick="cancelEdit(3)">❌ Cancelar</button>
+                    </div>
                 </div>
                 
-                <div class="music-card">
-                    <h3>🎶 "A Thousand Years" - Christina Perri</h3>
-                    <p>Artista: Christina Perri</p>
-                    <button class="play-button" onclick="playMusic('thousand')">▶️ Tocar Música</button>
-                    <p class="music-reason">"Te esperaria mil anos para viver esse amor"</p>
-                </div>
-                
-                <div class="music-card">
-                    <h3>🎶 "Make You Feel My Love" - Adele</h3>
-                    <p>Artista: Adele</p>
-                    <button class="play-button" onclick="playMusic('makeyoufeel')">▶️ Tocar Música</button>
-                    <p class="music-reason">"Faria qualquer coisa para te fazer sentir meu amor"</p>
-                </div>
-                
-                <div class="music-card">
-                    <h3>🎶 "At Last" - Etta James</h3>
-                    <p>Artista: Etta James</p>
-                    <button class="play-button" onclick="playMusic('atlast')">▶️ Tocar Música</button>
-                    <p class="music-reason">"Finalmente encontrei minha alma gêmea"</p>
+                <div class="music-card" id="song4">
+                    <h3 id="title4">🎶 "A Thousand Years" - Christina Perri</h3>
+                    <p id="artist4">Artista: Christina Perri</p>
+                    <button class="play-button" onclick="playMusic('song4')">▶️ Tocar Música</button>
+                    <button class="edit-button" onclick="editSong(4)">✏️ Editar</button>
+                    <p class="music-reason" id="reason4">"Te esperaria mil anos para viver esse amor"</p>
+                    
+                    <div class="edit-form" id="editForm4">
+                        <input type="text" id="editTitle4" placeholder="Título da música">
+                        <input type="text" id="editArtist4" placeholder="Nome do artista">
+                        <textarea id="editReason4" placeholder="Por que essa música é especial?" rows="2"></textarea>
+                        <button class="play-button" onclick="saveSong(4)">💾 Salvar</button>
+                        <button class="edit-button" onclick="cancelEdit(4)">❌ Cancelar</button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -519,47 +613,215 @@
         });
 
         // Funções para a galeria de fotos
-        function viewPhoto(photoId) {
-            alert(`📸 Visualizando foto ${photoId}\n\n💡 Dica: Você pode substituir este alert por uma funcionalidade real de visualização de fotos!`);
+        function displayMemories() {
+            const grid = document.getElementById('memoriesGrid');
+            grid.innerHTML = '';
+
+            memories.forEach(memory => {
+                const memoryCard = document.createElement('div');
+                memoryCard.className = 'memory-card';
+                memoryCard.innerHTML = `
+                    <div class="memory-photo" style="background-image: url('${memory.photo}'); background-size: cover; background-position: center;">
+                        ${memory.photo ? '' : '📷 Clique para adicionar foto'}
+                    </div>
+                    <h3 style="color: white; margin-bottom: 10px;">${memory.title}</h3>
+                    <p class="memory-text">${memory.text}</p>
+                    <button class="edit-btn" onclick="editMemory(${memory.id})" style="margin-top: 10px;">✏️ Editar</button>
+                    <button class="edit-btn" onclick="deleteMemory(${memory.id})" style="margin-top: 10px; background: rgba(255,0,0,0.3);">🗑️ Excluir</button>
+                `;
+                grid.appendChild(memoryCard);
+            });
         }
 
-        function addPhoto(photoId) {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = 'image/*';
-            input.onchange = function(e) {
-                const file = e.target.files[0];
-                if (file) {
-                    alert(`📷 Foto selecionada: ${file.name}\n\n💡 Em uma versão completa, a foto seria adicionada à galeria!`);
+        // Sistema de Música
+        function openMusicModal() {
+            document.getElementById('musicModal').style.display = 'block';
+        }
+
+        function closeMusicModal() {
+            document.getElementById('musicModal').style.display = 'none';
+            document.getElementById('musicTitle').value = '';
+            document.getElementById('musicArtist').value = '';
+            document.getElementById('musicUrl').value = '';
+            document.getElementById('musicMemory').value = '';
+        }
+
+        function addMusic() {
+            const title = document.getElementById('musicTitle').value;
+            const artist = document.getElementById('musicArtist').value;
+            const url = document.getElementById('musicUrl').value;
+            const memory = document.getElementById('musicMemory').value;
+
+            if (!title || !artist) {
+                alert('Por favor, preencha pelo menos o nome da música e o artista!');
+                return;
+            }
+
+            const music = {
+                id: Date.now(),
+                title: title,
+                artist: artist,
+                url: url || '',
+                memory: memory || '',
+                audioUrl: convertToAudioUrl(url)
+            };
+
+            musicPlaylist.push(music);
+            saveData('musicPlaylist', JSON.stringify(musicPlaylist));
+            displayPlaylist();
+            closeMusicModal();
+        }
+
+        function convertToAudioUrl(url) {
+            if (!url) return '';
+            
+            // Converter URL do YouTube para embed
+            if (url.includes('youtube.com') || url.includes('youtu.be')) {
+                let videoId = '';
+                if (url.includes('youtu.be/')) {
+                    videoId = url.split('youtu.be/')[1].split('?')[0];
+                } else if (url.includes('youtube.com/watch?v=')) {
+                    videoId = url.split('v=')[1].split('&')[0];
                 }
-            };
-            input.click();
+                if (videoId) {
+                    return `https://www.youtube.com/embed/${videoId}?autoplay=1&controls=0`;
+                }
+            }
+            
+            // Para outros URLs (arquivos de áudio diretos)
+            return url;
         }
 
-        // Funções para as músicas
-        function playMusic(song) {
-            const messages = {
-                'perfect': '🎵 Tocando "Perfect" de Ed Sheeran...\n\n"Porque você é perfeita para mim!" ❤️',
-                'allofme': '🎵 Tocando "All of Me" de John Legend...\n\n"All of me loves all of you!" 💕',
-                'thinking': '🎵 Tocando "Thinking Out Loud" de Ed Sheeran...\n\n"Nossa música especial!" ✨',
-                'thousand': '🎵 Tocando "A Thousand Years" de Christina Perri...\n\n"Te amaria por mil anos!" 💖',
-                'makeyoufeel': '🎵 Tocando "Make You Feel My Love" de Adele...\n\n"Faria qualquer coisa por você!" 🌹',
-                'atlast': '🎵 Tocando "At Last" de Etta James...\n\n"Finalmente te encontrei!" 💫'
-            };
-            
-            alert(messages[song] || '🎵 Tocando música...');
-            
-            // Simular efeito de música tocando
-            const button = event.target;
-            const originalText = button.innerHTML;
-            button.innerHTML = '⏸️ Pausar';
-            button.style.background = 'linear-gradient(45deg, #00b894, #00cec9)';
-            
-            setTimeout(() => {
-                button.innerHTML = originalText;
-                button.style.background = 'linear-gradient(45deg, #6c5ce7, #a29bfe)';
-            }, 3000);
+        function displayPlaylist() {
+            const playlist = document.getElementById('playlist');
+            playlist.innerHTML = '';
+
+            if (musicPlaylist.length === 0) {
+                playlist.innerHTML = '<p style="color: rgba(255,255,255,0.7); text-align: center; padding: 20px;">Adicione suas músicas especiais aqui! 🎵</p>';
+                return;
+            }
+
+            musicPlaylist.forEach((song, index) => {
+                const songItem = document.createElement('div');
+                songItem.className = `song-item ${index === currentSongIndex ? 'active' : ''}`;
+                songItem.innerHTML = `
+                    <div class="song-details">
+                        <h4>${song.title}</h4>
+                        <p>${song.artist}${song.memory ? ' • ' + song.memory.substring(0, 50) + '...' : ''}</p>
+                    </div>
+                    <div class="song-actions">
+                        <button onclick="playSong(${index})">▶️</button>
+                        <button onclick="editMusic(${song.id})">✏️</button>
+                        <button onclick="deleteMusic(${song.id})">🗑️</button>
+                    </div>
+                `;
+                playlist.appendChild(songItem);
+            });
         }
+
+        function playSong(index) {
+            if (currentAudio) {
+                currentAudio.pause();
+            }
+
+            currentSongIndex = index;
+            const song = musicPlaylist[index];
+            
+            document.getElementById('songTitle').textContent = song.title;
+            document.getElementById('songArtist').textContent = song.artist;
+
+            if (song.audioUrl && !song.audioUrl.includes('youtube.com')) {
+                // Para arquivos de áudio diretos
+                currentAudio = new Audio(song.audioUrl);
+                currentAudio.play().catch(e => {
+                    alert('Não foi possível reproduzir esta música. Verifique se o URL está correto.');
+                });
+                
+                currentAudio.onended = () => nextSong();
+                isPlaying = true;
+                document.getElementById('playBtn').textContent = '⏸️';
+            } else {
+                // Para YouTube ou sem URL
+                alert(song.url ? 'Abra o link para ouvir: ' + song.url : 'Esta música não tem URL configurada');
+                if (song.url) {
+                    window.open(song.url, '_blank');
+                }
+            }
+
+            displayPlaylist();
+        }
+
+        function togglePlay() {
+            if (!currentAudio) {
+                if (musicPlaylist.length > 0) {
+                    playSong(0);
+                } else {
+                    alert('Adicione algumas músicas primeiro! 🎵');
+                }
+                return;
+            }
+
+            if (isPlaying) {
+                currentAudio.pause();
+                document.getElementById('playBtn').textContent = '▶️';
+                isPlaying = false;
+            } else {
+                currentAudio.play().catch(e => {
+                    alert('Erro ao reproduzir música');
+                });
+                document.getElementById('playBtn').textContent = '⏸️';
+                isPlaying = true;
+            }
+        }
+
+        function nextSong() {
+            if (musicPlaylist.length === 0) return;
+            const nextIndex = (currentSongIndex + 1) % musicPlaylist.length;
+            playSong(nextIndex);
+        }
+
+        function previousSong() {
+            if (musicPlaylist.length === 0) return;
+            const prevIndex = currentSongIndex <= 0 ? musicPlaylist.length - 1 : currentSongIndex - 1;
+            playSong(prevIndex);
+        }
+
+        function editMusic(id) {
+            const music = musicPlaylist.find(m => m.id === id);
+            document.getElementById('musicTitle').value = music.title;
+            document.getElementById('musicArtist').value = music.artist;
+            document.getElementById('musicUrl').value = music.url;
+            document.getElementById('musicMemory').value = music.memory;
+            
+            deleteMusic(id);
+            openMusicModal();
+        }
+
+        function deleteMusic(id) {
+            musicPlaylist = musicPlaylist.filter(m => m.id !== id);
+            saveData('musicPlaylist', JSON.stringify(musicPlaylist));
+            displayPlaylist();
+            
+            // Se a música deletada estava tocando, parar reprodução
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio = null;
+                isPlaying = false;
+                document.getElementById('playBtn').textContent = '▶️';
+                currentSongIndex = -1;
+            }
+        }
+
+        // Fechar modais clicando fora
+        window.onclick = function(event) {
+            const modals = document.getElementsByClassName('modal');
+            for (let modal of modals) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            }
+        }
+        
     </script>
 </body>
 </html>

@@ -11,6 +11,11 @@
             box-sizing: border-box;
         }
 
+        // Inicializar alguns corações
+        for (let i = 0; i < 5; i++) {
+            setTimeout(createHeart, i * 500);
+        }
+
         body {
             font-family: 'Georgia', serif;
             background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
@@ -157,6 +162,100 @@
             transform: scale(1.05);
         }
 
+        .photo-button {
+            background: linear-gradient(45deg, #ff6b9d, #c44569);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin: 10px 5px 0 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+
+        .photo-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .music-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 25px;
+            margin: 50px 0;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .music-title {
+            text-align: center;
+            color: #8b1538;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        .music-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .music-card {
+            background: linear-gradient(45deg, #ffeaa7, #fab1a0);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .music-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .music-card h3 {
+            color: #8b1538;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .music-card p {
+            color: #5d1a2b;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .music-reason {
+            color: #74b9ff;
+            font-style: italic;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        .play-button {
+            background: linear-gradient(45deg, #6c5ce7, #a29bfe);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .play-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+        }
+
         .message-section {
             background: rgba(255, 255, 255, 0.95);
             padding: 50px;
@@ -233,6 +332,10 @@
                 grid-template-columns: 1fr;
             }
             
+            .music-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+            
             .message-section {
                 padding: 30px 20px;
             }
@@ -275,15 +378,82 @@
             <div class="photo-grid">
                 <div class="photo-placeholder">
                     📷<br>Nossa primeira foto juntos<br>❤️
+                    <div>
+                        <button class="photo-button" onclick="viewPhoto(1)">Ver Foto</button>
+                        <button class="photo-button" onclick="addPhoto(1)">Adicionar</button>
+                    </div>
                 </div>
                 <div class="photo-placeholder">
                     📷<br>Nosso primeiro encontro<br>💕
+                    <div>
+                        <button class="photo-button" onclick="viewPhoto(2)">Ver Foto</button>
+                        <button class="photo-button" onclick="addPhoto(2)">Adicionar</button>
+                    </div>
                 </div>
                 <div class="photo-placeholder">
                     📷<br>Um momento especial<br>✨
+                    <div>
+                        <button class="photo-button" onclick="viewPhoto(3)">Ver Foto</button>
+                        <button class="photo-button" onclick="addPhoto(3)">Adicionar</button>
+                    </div>
                 </div>
                 <div class="photo-placeholder">
                     📷<br>Sorrindo juntos<br>😊
+                    <div>
+                        <button class="photo-button" onclick="viewPhoto(4)">Ver Foto</button>
+                        <button class="photo-button" onclick="addPhoto(4)">Adicionar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="music-section">
+            <h2 class="music-title">Nossa Playlist do Amor 🎵</h2>
+            <p style="text-align: center; color: #5d1a2b; font-size: 1.1rem; margin-bottom: 20px;">
+                As músicas que marcaram nossa história e que me fazem lembrar de você
+            </p>
+            
+            <div class="music-grid">
+                <div class="music-card">
+                    <h3>🎶 "Perfect" - Ed Sheeran</h3>
+                    <p>Artista: Ed Sheeran</p>
+                    <button class="play-button" onclick="playMusic('perfect')">▶️ Tocar Música</button>
+                    <p class="music-reason">"Porque você é perfeita para mim em todos os sentidos"</p>
+                </div>
+                
+                <div class="music-card">
+                    <h3>🎶 "All of Me" - John Legend</h3>
+                    <p>Artista: John Legend</p>
+                    <button class="play-button" onclick="playMusic('allofme')">▶️ Tocar Música</button>
+                    <p class="music-reason">"Eu te amo com todas as suas imperfeições perfeitas"</p>
+                </div>
+                
+                <div class="music-card">
+                    <h3>🎶 "Thinking Out Loud" - Ed Sheeran</h3>
+                    <p>Artista: Ed Sheeran</p>
+                    <button class="play-button" onclick="playMusic('thinking')">▶️ Tocar Música</button>
+                    <p class="music-reason">"Nossa música do primeiro beijo"</p>
+                </div>
+                
+                <div class="music-card">
+                    <h3>🎶 "A Thousand Years" - Christina Perri</h3>
+                    <p>Artista: Christina Perri</p>
+                    <button class="play-button" onclick="playMusic('thousand')">▶️ Tocar Música</button>
+                    <p class="music-reason">"Te esperaria mil anos para viver esse amor"</p>
+                </div>
+                
+                <div class="music-card">
+                    <h3>🎶 "Make You Feel My Love" - Adele</h3>
+                    <p>Artista: Adele</p>
+                    <button class="play-button" onclick="playMusic('makeyoufeel')">▶️ Tocar Música</button>
+                    <p class="music-reason">"Faria qualquer coisa para te fazer sentir meu amor"</p>
+                </div>
+                
+                <div class="music-card">
+                    <h3>🎶 "At Last" - Etta James</h3>
+                    <p>Artista: Etta James</p>
+                    <button class="play-button" onclick="playMusic('atlast')">▶️ Tocar Música</button>
+                    <p class="music-reason">"Finalmente encontrei minha alma gêmea"</p>
                 </div>
             </div>
         </section>
@@ -348,9 +518,47 @@
             });
         });
 
-        // Inicializar alguns corações
-        for (let i = 0; i < 5; i++) {
-            setTimeout(createHeart, i * 500);
+        // Funções para a galeria de fotos
+        function viewPhoto(photoId) {
+            alert(`📸 Visualizando foto ${photoId}\n\n💡 Dica: Você pode substituir este alert por uma funcionalidade real de visualização de fotos!`);
+        }
+
+        function addPhoto(photoId) {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    alert(`📷 Foto selecionada: ${file.name}\n\n💡 Em uma versão completa, a foto seria adicionada à galeria!`);
+                }
+            };
+            input.click();
+        }
+
+        // Funções para as músicas
+        function playMusic(song) {
+            const messages = {
+                'perfect': '🎵 Tocando "Perfect" de Ed Sheeran...\n\n"Porque você é perfeita para mim!" ❤️',
+                'allofme': '🎵 Tocando "All of Me" de John Legend...\n\n"All of me loves all of you!" 💕',
+                'thinking': '🎵 Tocando "Thinking Out Loud" de Ed Sheeran...\n\n"Nossa música especial!" ✨',
+                'thousand': '🎵 Tocando "A Thousand Years" de Christina Perri...\n\n"Te amaria por mil anos!" 💖',
+                'makeyoufeel': '🎵 Tocando "Make You Feel My Love" de Adele...\n\n"Faria qualquer coisa por você!" 🌹',
+                'atlast': '🎵 Tocando "At Last" de Etta James...\n\n"Finalmente te encontrei!" 💫'
+            };
+            
+            alert(messages[song] || '🎵 Tocando música...');
+            
+            // Simular efeito de música tocando
+            const button = event.target;
+            const originalText = button.innerHTML;
+            button.innerHTML = '⏸️ Pausar';
+            button.style.background = 'linear-gradient(45deg, #00b894, #00cec9)';
+            
+            setTimeout(() => {
+                button.innerHTML = originalText;
+                button.style.background = 'linear-gradient(45deg, #6c5ce7, #a29bfe)';
+            }, 3000);
         }
     </script>
 </body>

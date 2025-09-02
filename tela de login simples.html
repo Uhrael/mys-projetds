@@ -1,23 +1,357 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Para Meu Amor ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            color: rgba(255, 105, 180, 0.7);
+            font-size: 20px;
+            animation: float 6s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: #8b1538;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 2px 2px 4px rgba(0,0,0,0.1), 0 0 10px rgba(255,105,180,0.5); }
+            to { text-shadow: 2px 2px 4px rgba(0,0,0,0.1), 0 0 20px rgba(255,105,180,0.8); }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #5d1a2b;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .love-sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .love-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transform: translateY(0);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .love-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .love-card h2 {
+            color: #8b1538;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .love-card p {
+            color: #5d1a2b;
+            line-height: 1.6;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .photo-gallery {
+            margin: 50px 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .gallery-title {
+            text-align: center;
+            color: #8b1538;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .photo-placeholder {
+            aspect-ratio: 1;
+            background: linear-gradient(45deg, #ffb3ba, #ffdfba);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8b1538;
+            font-size: 1.1rem;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-placeholder:hover {
+            transform: scale(1.05);
+        }
+
+        .message-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 50px;
+            border-radius: 25px;
+            margin: 50px 0;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .message-section h2 {
+            color: #8b1538;
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+        }
+
+        .message-section p {
+            color: #5d1a2b;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+            font-style: italic;
+        }
+
+        .interactive-button {
+            background: linear-gradient(45deg, #ff6b9d, #c44569);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .interactive-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .surprise-message {
+            display: none;
+            background: linear-gradient(45deg, #ffd93d, #ff6b9d);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 20px 0;
+            text-align: center;
+            color: white;
+            font-size: 1.3rem;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .love-sections {
+                grid-template-columns: 1fr;
+            }
+            
+            .message-section {
+                padding: 30px 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Login</h1>
-    <form>
-        <label for="email">E-mail:</label>
-        <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required><br><br>
+    <div class="floating-hearts" id="hearts"></div>
+    
+    <div class="container">
+        <section class="hero">
+            <h1>Para Minha Princesa ✨</h1>
+            <p>Este site foi criado especialmente para você, com todo meu amor e carinho. Cada palavra aqui representa o quanto você significa para mim.</p>
+        </section>
 
-        <label for="senha">Senha:</label>
-        <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required><br><br>
+        <div class="love-sections">
+            <div class="love-card">
+                <h2>💝 Por que te amo</h2>
+                <p>Seu sorriso ilumina meus dias mais escuros, sua risada é a melodia mais doce que já ouvi, e seu coração é o lugar mais seguro que conheço. Você faz de cada momento algo especial.</p>
+            </div>
+            
+            <div class="love-card">
+                <h2>🌟 Nossos momentos</h2>
+                <p>Cada segundo ao seu lado é um tesouro que guardo no coração. Desde nossa primeira conversa até nosso último beijo, cada memória é preciosa e única.</p>
+            </div>
+            
+            <div class="love-card">
+                <h2>💖 Meus sentimentos</h2>
+                <p>Não existem palavras suficientes para expressar o amor que sinto por você. Você é minha inspiração, minha paz, minha alegria e meu futuro.</p>
+            </div>
+            
+            <div class="love-card">
+                <h2>🌹 Para sempre</h2>
+                <p>Quero construir uma vida inteira de momentos especiais ao seu lado. Você é minha alma gêmea, minha companheira para todas as aventuras que a vida nos reserva.</p>
+            </div>
+        </div>
 
-        <button type="submit">Entrar</button>
-    </form>
-    <p>Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
+        <section class="photo-gallery">
+            <h2 class="gallery-title">Galeria dos Nossos Momentos 📸</h2>
+            <div class="photo-grid">
+                <div class="photo-placeholder">
+                    📷<br>Nossa primeira foto juntos<br>❤️
+                </div>
+                <div class="photo-placeholder">
+                    📷<br>Nosso primeiro encontro<br>💕
+                </div>
+                <div class="photo-placeholder">
+                    📷<br>Um momento especial<br>✨
+                </div>
+                <div class="photo-placeholder">
+                    📷<br>Sorrindo juntos<br>😊
+                </div>
+            </div>
+        </section>
+
+        <section class="message-section">
+            <h2>Minha Mensagem Especial Para Você 💌</h2>
+            <p>"Meu amor, este site é só uma pequena demonstração do tamanho do meu sentimento por você. Cada dia ao seu lado é um presente, cada sorriso seu é um raio de sol em minha vida. Obrigado por ser essa pessoa incrível, por me fazer sentir o amor mais puro e verdadeiro. Te amo mais que as palavras podem expressar, e prometo te amar para sempre."</p>
+            
+            <button class="interactive-button" onclick="showSurprise()">
+                Clique aqui para uma surpresa! 🎁
+            </button>
+            
+            <div id="surprise" class="surprise-message">
+                <h3>🌟 SURPRESA ESPECIAL! 🌟</h3>
+                <p>Você é a razão do meu sorriso todos os dias! Este site foi feito com muito amor, mas você merece muito mais que isso. Te amo infinitamente! 💖✨</p>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Criar corações flutuantes
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            heart.style.opacity = Math.random();
+            heart.style.fontSize = (Math.random() * 10 + 15) + 'px';
+            
+            document.getElementById('hearts').appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+
+        // Criar corações a cada 1 segundo
+        setInterval(createHeart, 1000);
+
+        // Função para mostrar surpresa
+        function showSurprise() {
+            const surprise = document.getElementById('surprise');
+            if (surprise.style.display === 'none' || surprise.style.display === '') {
+                surprise.style.display = 'block';
+            } else {
+                surprise.style.display = 'none';
+            }
+        }
+
+        // Efeito de paralaxe suave nos cards
+        window.addEventListener('scroll', () => {
+            const cards = document.querySelectorAll('.love-card');
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const scrolled = window.pageYOffset;
+                const rate = scrolled * -0.5;
+                
+                if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+                    card.style.transform = `translateY(${rate}px)`;
+                }
+            });
+        });
+
+        // Inicializar alguns corações
+        for (let i = 0; i < 5; i++) {
+            setTimeout(createHeart, i * 500);
+        }
+    </script>
 </body>
-    <footer>
-        <p>&copy; 2023 My Website</p>
-    </footer>
+</html>

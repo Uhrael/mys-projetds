@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Meu Amor ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            color: rgba(255, 105, 180, 0.7);
+            font-size: 20px;
+            animation: float 6s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: #8b1538;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 2px 2px 4px rgba(0,0,0,0.1), 0 0 10px rgba(255,105,180,0.5); }
+            to { text-shadow: 2px 2px 4px rgba(0,0,0,0.1), 0 0 20px rgba(255,105,180,0.8); }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #5d1a2b;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .love-sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .love-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transform: translateY(0);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .love-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .love-card h2 {
+            color: #8b1538;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .love-card p {
+            color: #5d1a2b;
+            line-height: 1.6;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .photo-gallery {
+            margin: 50px 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .gallery-title {
+            text-align: center;
+            color: #8b1538;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .photo-placeholder {
+            aspect-ratio: 1;
+            background: linear-gradient(45deg, #ffb3ba, #ffdfba);
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #8b1538;
+            font-size: 1.1rem;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-placeholder:hover {
+            transform: scale(1.05);
+        }
+
+        .photo-button {
+            background: linear-gradient(45deg, #ff6b9d, #c44569);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin: 10px 5px 0 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+
+        .photo-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .music-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 25px;
+            margin: 50px 0;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .music-title {
+            text-align: center;
+            color: #8b1538;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        .edit-playlist-btn {
+            background: linear-gradient(45deg, #00b894, #00cec9);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 20px auto;
+            display: block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .edit-playlist-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+        }
+
+        .music-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .music-card {
+            background: linear-gradient(45deg, #ffeaa7, #fab1a0);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+        }
+
+        .music-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .music-card h3 {
+            color: #8b1538;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .music-card p {
+            color: #5d1a2b;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .music-reason {
+            color: #74b9ff;
+            font-style: italic;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        .play-button {
+            background: linear-gradient(45deg, #6c5ce7, #a29bfe);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .play-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+        }
+
+        .edit-button {
+            background: linear-gradient(45deg, #e17055, #fdcb6e);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin: 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+
+        .edit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .edit-form {
+            display: none;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .edit-form input, .edit-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        .edit-form input:focus, .edit-form textarea:focus {
+            border-color: #ff6b9d;
+            outline: none;
+        }
+
+        .message-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 50px;
+            border-radius: 25px;
+            margin: 50px 0;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .message-section h2 {
+            color: #8b1538;
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+        }
+
+        .message-section p {
+            color: #5d1a2b;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+            font-style: italic;
+        }
+
+        .interactive-button {
+            background: linear-gradient(45deg, #ff6b9d, #c44569);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .interactive-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .surprise-message {
+            display: none;
+            background: linear-gradient(45deg, #ffd93d, #ff6b9d);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 20px 0;
+            text-align: center;
+            color: white;
+            font-size: 1.3rem;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .love-sections {
+                grid-template-columns: 1fr;
+            }
+
+            .music-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+
+            .message-section {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts" id="hearts"></div>
+
+    <div class="container">
+        <section class="hero">
+            <h1>Para Minha Princesa ✨</h1>
+            <p>Este site foi criado especialmente para você, com todo meu amor e carinho. Cada palavra aqui representa o quanto você significa para mim.</p>
+        </section>
+
+        <div class="love-sections">
+            <div class="love-card">
+                <h2>💝 Por que te amo</h2>
+                <p>Seu sorriso ilumina meus dias mais escuros, sua risada é a melodia mais doce que já ouvi, e seu coração é o lugar mais seguro que conheço. Você faz de cada momento algo especial.</p>
+            </div>
+
+            <div class="love-card">
+                <h2>🌟 Nossos momentos</h2>
+                <p>Cada segundo ao seu lado é um tesouro que guardo no coração. Desde nossa primeira conversa até nosso último beijo, cada memória é preciosa e única.</p>
+            </div>
+
+            <div class="love-card">
+                <h2>💖 Meus sentimentos</h2>
+                <p>Não existem palavras suficientes para expressar o amor que sinto por você. Você é minha inspiração, minha paz, minha alegria e meu futuro.</p>
+            </div>
+
+            <div class="love-card">
+                <h2>🌹 Para sempre</h2>
+                <p>Quero construir uma vida inteira de momentos especiais ao seu lado. Você é minha alma gêmea, minha companheira para todas as aventuras que a vida nos reserva.</p>
+            </div>
+        </div>
+
+        <section class="photo-gallery">
+            <h2 class="gallery-title">Galeria dos Nossos Momentos 📸</h2>
+            <div class="photo-grid">
+                <div class="photo-placeholder">
+                    📷<br>Nossa primeira foto juntos<br>❤️
+                    <div>
+                        <button class="photo-button" onclick="viewPhoto(1)">Ver Foto</button>
+                        <button class="photo-button" onclick="addPhoto(1)">Adicionar</button>
+                    </div>
+                </div>
+                <div class="photo-placeholder">
+                    📷<br>Nosso primeiro encontro<br>💕
+                    <div>
+                        <button class="photo-button" onclick="viewPhoto(2)">Ver Foto</button>
+                        <button class="photo-button" onclick="addPhoto(2)">Adicionar</button>
+                    </div>
+                </div>
+                <div class="photo-placeholder">
+                    📷<br>Um momento especial<br>✨
+                    <div>
+                        <button class="photo-button" onclick="viewPhoto(3)">Ver Foto</button>
+                        <button class="photo-button" onclick="addPhoto(3)">Adicionar</button>
+                    </div>
+                </div>
+                <div class="photo-placeholder">
+                    📷<br>Sorrindo juntos<br>😊
+                    <div>
+                        <button class="photo-button" onclick="viewPhoto(4)">Ver Foto</button>
+                        <button class="photo-button" onclick="addPhoto(4)">Adicionar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="music-section">
+            <h2 class="music-title">Nossa Playlist do Amor 🎵</h2>
+            <p style="text-align: center; color: #5d1a2b; font-size: 1.1rem; margin-bottom: 20px;">
+                As músicas que marcaram nossa história e que me fazem lembrar de você
+            </p>
+            
+            <button class="edit-playlist-btn" onclick="toggleEditMode()">
+                ✏️ Personalizar Playlist
+            </button>
+            
+            <div class="music-grid" id="musicGrid">
+                <div class="music-card" id="song1">
+                    <h3 id="title1">🎶 "Perfect" - Ed Sheeran</h3>
+                    <p id="artist1">Artista: Ed Sheeran</p>
+                    <button class="play-button" onclick="playMusic('song1')">▶️ Tocar Música</button>
+                    <button class="edit-button" onclick="editSong(1)">✏️ Editar</button>
+                    <p class="music-reason" id="reason1">"Porque você é perfeita para mim em todos os sentidos"</p>
+                    
+                    <div class="edit-form" id="editForm1">
+                        <input type="text" id="editTitle1" placeholder="Título da música">
+                        <input type="text" id="editArtist1" placeholder="Nome do artista">
+                        <textarea id="editReason1" placeholder="Por que essa música é especial?" rows="2"></textarea>
+                        <button class="play-button" onclick="saveSong(1)">💾 Salvar</button>
+                        <button class="edit-button" onclick="cancelEdit(1)">❌ Cancelar</button>
+                    </div>
+                </div>
+
+                <div class="music-card" id="song2">
+                    <h3 id="title2">🎶 "All of Me" - John Legend</h3>
+                    <p id="artist2">Artista: John Legend</p>
+                    <button class="play-button" onclick="playMusic('song2')">▶️ Tocar Música</button>
+                    <button class="edit-button" onclick="editSong(2)">✏️ Editar</button>
+                    <p class="music-reason" id="reason2">"Eu te amo com todas as suas imperfeições perfeitas"</p>
+                    
+                    <div class="edit-form" id="editForm2">
+                        <input type="text" id="editTitle2" placeholder="Título da música">
+                        <input type="text" id="editArtist2" placeholder="Nome do artista">
+                        <textarea id="editReason2" placeholder="Por que essa música é especial?" rows="2"></textarea>
+                        <button class="play-button" onclick="saveSong(2)">💾 Salvar</button>
+                        <button class="edit-button" onclick="cancelEdit(2)">❌ Cancelar</button>
+                    </div>
+                </div>
+
+                <div class="music-card" id="song3">
+                    <h3 id="title3">🎶 "Thinking Out Loud" - Ed Sheeran</h3>
+                    <p id="artist3">Artista: Ed Sheeran</p>
+                    <button class="play-button" onclick="playMusic('song3')">▶️ Tocar Música</button>
+                    <button class="edit-button" onclick="editSong(3)">✏️ Editar</button>
+                    <p class="music-reason" id="reason3">"Nossa música do primeiro beijo"</p>
+                    
+                    <div class="edit-form" id="editForm3">
+                        <input type="text" id="editTitle3" placeholder="Título da música">
+                        <input type="text" id="editArtist3" placeholder="Nome do artista">
+                        <textarea id="editReason3" placeholder="Por que essa música é especial?" rows="2"></textarea>
+                        <button class="play-button" onclick="saveSong(3)">💾 Salvar</button>
+                        <button class="edit-button" onclick="cancelEdit(3)">❌ Cancelar</button>
+                    </div>
+                </div>
+
+                <div class="music-card" id="song4">
+                    <h3 id="title4">🎶 "A Thousand Years" - Christina Perri</h3>
+                    <p id="artist4">Artista: Christina Perri</p>
+                    <button class="play-button" onclick="playMusic('song4')">▶️ Tocar Música</button>
+                    <button class="edit-button" onclick="editSong(4)">✏️ Editar</button>
+                    <p class="music-reason" id="reason4">"Te esperaria mil anos para viver esse amor"</p>
+                    
+                    <div class="edit-form" id="editForm4">
+                        <input type="text" id="editTitle4" placeholder="Título da música">
+                        <input type="text" id="editArtist4" placeholder="Nome do artista">
+                        <textarea id="editReason4" placeholder="Por que essa música é especial?" rows="2"></textarea>
+                        <button class="play-button" onclick="saveSong(4)">💾 Salvar</button>
+                        <button class="edit-button" onclick="cancelEdit(4)">❌ Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="message-section">
+            <h2>Minha Mensagem Especial Para Você 💌</h2>
+            <p>"Meu amor, este site é só uma pequena demonstração do tamanho do meu sentimento por você. Cada dia ao seu lado é um presente, cada sorriso seu é um raio de sol em minha vida. Obrigado por ser essa pessoa incrível, por me fazer sentir o amor mais puro e verdadeiro. Te amo mais que as palavras podem expressar, e prometo te amar para sempre."</p>
+
+            <button class="interactive-button" onclick="showSurprise()">
+                Clique aqui para uma surpresa! 🎁
+            </button>
+
+            <div id="surprise" class="surprise-message">
+                <h3>🌟 SURPRESA ESPECIAL! 🌟</h3>
+                <p>Você é a razão do meu sorriso todos os dias! Este site foi feito com muito amor, mas você merece muito mais que isso. Te amo infinitamente! 💖✨</p>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        let editMode = false;
+
+        // Criar corações flutuantes
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            heart.style.opacity = Math.random();
+            heart.style.fontSize = (Math.random() * 10 + 15) + 'px';
+
+            document.getElementById('hearts').appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+
+        // Inicializar alguns corações
+        for (let i = 0; i < 5; i++) {
+            setTimeout(createHeart, i * 500);
+        }
+
+        // Criar corações a cada 1 segundo
+        setInterval(createHeart, 1000);
+
+        // Função para mostrar surpresa
+        function showSurprise() {
+            const surprise = document.getElementById('surprise');
+            if (surprise.style.display === 'none' || surprise.style.display === '') {
+                surprise.style.display = 'block';
+            } else {
+                surprise.style.display = 'none';
+            }
+        }
+
+        // Funções para a galeria de fotos
+        function viewPhoto(photoId) {
+            alert(`📸 Visualizando foto ${photoId}\n\n💡 Dica: Você pode substituir este alert por uma funcionalidade real de visualização de fotos!`);
+        }
+
+        function addPhoto(photoId) {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    alert(`📷 Foto selecionada: ${file.name}\n\n💡 Em uma versão completa, a foto seria adicionada à galeria!`);
+                }
+            };
+            input.click();
+        }
+
+        // Funções para as músicas
+        function playMusic(songId) {
+            const messages = {
+                'song1': '🎵 Tocando "Perfect" de Ed Sheeran...\n\n"Porque você é perfeita para mim!" ❤️',
+                'song2': '🎵 Tocando "All of Me" de John Legend...\n\n"All of me loves all of you!" 💕',
+                'song3': '🎵 Tocando "Thinking Out Loud" de Ed Sheeran...\n\n"Nossa música especial!" ✨',
+                'song4': '🎵 Tocando "A Thousand Years" de Christina Perri...\n\n"Te amaria por mil anos!" 💖'
+            };
+
+            alert(messages[songId] || '🎵 Tocando música...');
+
+            // Simular efeito de música tocando
+            const button = event.target;
+            const originalText = button.innerHTML;
+            button.innerHTML = '⏸️ Pausar';
+            button.style.background = 'linear-gradient(45deg, #00b894, #00cec9)';
+
+            setTimeout(() => {
+                button.innerHTML = originalText;
+                button.style.background = 'linear-gradient(45deg, #6c5ce7, #a29bfe)';
+            }, 3000);
+        }
+
+        function toggleEditMode() {
+            editMode = !editMode;
+            const editButtons = document.querySelectorAll('.edit-button');
+            editButtons.forEach(btn => {
+                btn.style.display = editMode ? 'inline-block' : 'none';
+            });
+
+            const toggleBtn = document.querySelector('.edit-playlist-btn');
+            toggleBtn.textContent = editMode ? '✅ Terminar Edição' : '✏️ Personalizar Playlist';
+        }
+
+        function editSong(songNumber) {
+            const form = document.getElementById(`editForm${songNumber}`);
+            const title = document.getElementById(`title${songNumber}`).textContent;
+            const artist = document.getElementById(`artist${songNumber}`).textContent;
+            const reason = document.getElementById(`reason${songNumber}`).textContent;
+
+            // Preencher o formulário com os valores atuais
+            document.getElementById(`editTitle${songNumber}`).value = title.replace('🎶 "', '').replace('"', '').split(' - ')[0];
+            document.getElementById(`editArtist${songNumber}`).value = artist.replace('Artista: ', '');
+            document.getElementById(`editReason${songNumber}`).value = reason.replace(/"/g, '');
+
+            form.style.display = form.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function saveSong(songNumber) {
+            const newTitle = document.getElementById(`editTitle${songNumber}`).value;
+            const newArtist = document.getElementById(`editArtist${songNumber}`).value;
+            const newReason = document.getElementById(`editReason${songNumber}`).value;
+
+            if (newTitle) {
+                document.getElementById(`title${songNumber}`).textContent = `🎶 "${newTitle}" - ${newArtist}`;
+            }
+            if (newArtist) {
+                document.getElementById(`artist${songNumber}`).textContent = `Artista: ${newArtist}`;
+            }
+            if (newReason) {
+                document.getElementById(`reason${songNumber}`).textContent = `"${newReason}"`;
+            }
+
+            document.getElementById(`editForm${songNumber}`).style.display = 'none';
+            alert('Música salva com sucesso! 🎵');
+        }
+
+        function cancelEdit(songNumber) {
+            document.getElementById(`editForm${songNumber}`).style.display = 'none';
+        }
+
+        // Inicializar modo de edição como desabilitado
+        toggleEditMode();
+        toggleEditMode();
+    </script>
+</body>
+</html>
